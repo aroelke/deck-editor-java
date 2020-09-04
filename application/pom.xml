@@ -10,23 +10,19 @@
 	</parent>
 
   <groupId>deck-editor-java</groupId>
-  <artifactId>editor</artifactId>
+  <artifactId>application</artifactId>
   <version>0.2.1</version>
 
   <properties>
     <java.version>14</java.version>
+    <start-class>editor.app.EditorApp</start-class>
   </properties>
 
   <dependencies>
     <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>2.8.6</version>
-    </dependency>
-    <dependency>
-      <groupId>com.joestelmach</groupId>
-      <artifactId>natty</artifactId>
-      <version>0.12</version>
+        <groupId>deck-editor-java</groupId>
+        <artifactId>editor</artifactId>
+        <version>${project.version}</version>
     </dependency>
   </dependencies>
 
@@ -57,6 +53,34 @@
             </configuration>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib</classpathPrefix>
+              <mainClass>editor.app.EditorApp</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>java</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <mainClass>editor.app.EditorApp</mainClass>
+        </configuration>
       </plugin>
     </plugins>
   </build>

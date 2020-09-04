@@ -10,4 +10,4 @@ This program depends on the following:
 
 This depends on MTGJSON (http://www.mtgjson.com/) for its card list.
 
-To run this from the command line, run `mvn exec:java`.  It may be necessary to run `mvn compile` first.
+To build on the command line, run `mvn compile`.  Then run it by running `mvn exec:java -pl application`.

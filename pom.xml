@@ -10,5 +10,6 @@
 
   <modules>
     <module>editor</module>
+    <module>application</module>
   </modules>
 </project>
