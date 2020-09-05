@@ -81,6 +81,7 @@
           <mainClass>editor.app.EditorApp</mainClass>
         </configuration>
       </plugin>
+
       <plugin>
         <groupId>org.moditect</groupId>
         <artifactId>moditect-maven-plugin</artifactId>
@@ -88,7 +89,7 @@
         <executions>
           <execution>
             <id>add-module-infos</id>
-            <phase>generate-resources</phase>
+            <phase>package</phase>
             <goals>
               <goal>add-module-info</goal>
             </goals>
@@ -110,6 +111,30 @@
                   </moduleInfoSource>
                 </module>
               </modules>
+            </configuration>
+          </execution>
+          <execution>
+            <id>create-runtime-image</id>
+            <phase>package</phase>
+            <goals>
+              <goal>create-runtime-image</goal>
+            </goals>
+            <configuration>
+              <modulePath>
+                <path>${project.build.directory}/application-${project.version}.jar</path>
+                <path>${project.build.directory}/lib</path>
+              </modulePath>
+              <modules>
+                <module>application</module>
+                <module>jdk.crypto.ec</module>
+              </modules>
+              <launcher>
+                <name>editor</name>
+                <module>application</module>
+              </launcher>
+              <outputDirectory>
+                ${project.build.directory}/jlink-image
+              </outputDirectory>
             </configuration>
           </execution>
         </executions>
