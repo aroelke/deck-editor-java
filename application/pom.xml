@@ -81,6 +81,39 @@
           <mainClass>editor.app.EditorApp</mainClass>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.moditect</groupId>
+        <artifactId>moditect-maven-plugin</artifactId>
+        <version>1.0.0.Beta2</version>
+        <executions>
+          <execution>
+            <id>add-module-infos</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>add-module-info</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/lib</outputDirectory>
+              <overwriteExistingFiles>true</overwriteExistingFiles>
+              <modules>
+                <module>
+                  <artifact>
+                    <groupId>com.joestelmach</groupId>
+                    <artifactId>natty</artifactId>
+                    <version>0.12</version>
+                  </artifact>
+                  <moduleInfoSource>
+                      module natty
+                      {
+                          exports com.joestelmach.natty;
+                      }
+                  </moduleInfoSource>
+                </module>
+              </modules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 </project>
