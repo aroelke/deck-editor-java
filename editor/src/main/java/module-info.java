@@ -7,4 +7,5 @@ module editor
     opens editor.gui.settings to com.google.gson;
 
     exports editor.gui;
+    exports editor.gui.settings;
 }

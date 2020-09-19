@@ -1033,7 +1033,9 @@ public class MainFrame extends JFrame
         preferencesItem.addActionListener((e) -> {
             try
             {
-                settings.get().setVisible(true);
+                SettingsDialog s = settings.get();
+                s.setLocationRelativeTo(this);
+                s.setVisible(true);
             }
             catch (ExecutionException | CancellationException | InterruptedException x)
             {
@@ -1913,7 +1915,7 @@ public class MainFrame extends JFrame
     public void saveSettings()
     {
         SettingsDialog.setRecents(recentItems.stream().map((i) -> recents.get(i).getPath()).collect(Collectors.toList()));
-        try (FileOutputStream out = new FileOutputStream(SettingsDialog.PROPERTIES_FILE))
+        try (FileOutputStream out = new FileOutputStream(SettingsDialog.PROPERTIES_FILE.toString()))
         {
             SettingsDialog.save();
         }
